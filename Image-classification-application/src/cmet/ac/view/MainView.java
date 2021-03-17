@@ -47,6 +47,8 @@ public class MainView {
 		JFrame jframe = new JFrame("Image Classification");
 		jframe.setSize(593, 495);
 		jframe.getContentPane().setLayout(new BorderLayout(0, 0));
+		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jframe.setVisible(true);
 		
 		JPanel panel = new JPanel();
 		jframe.getContentPane().add(panel);
