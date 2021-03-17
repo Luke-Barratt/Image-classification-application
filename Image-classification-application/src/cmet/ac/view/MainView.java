@@ -151,4 +151,48 @@ public class MainView {
 	public void setReadFileBtn(JButton readFileBtn) {
 		this.readFileBtn = readFileBtn;
 	}
+
+	/**
+	 * @return the imageNameTxt
+	 */
+	public JTextField getImageNameTxt() {
+		return imageNameTxt;
+	}
+
+	/**
+	 * @param imageNameTxt the imageNameTxt to set
+	 */
+	public void setImageNameTxt(JTextField imageNameTxt) {
+		this.imageNameTxt = imageNameTxt;
+	}
+
+	/**
+	 * @return the selectImageBtn
+	 */
+	public JButton getSelectImageBtn() {
+		return selectImageBtn;
+	}
+
+	/**
+	 * @param selectImageBtn the selectImageBtn to set
+	 */
+	public void setSelectImageBtn(JButton selectImageBtn) {
+		this.selectImageBtn = selectImageBtn;
+	}
+
+	/**
+	 * @return the readImageBtn
+	 */
+	public JButton getReadImageBtn() {
+		return readImageBtn;
+	}
+
+	/**
+	 * @param readImageBtn the readImageBtn to set
+	 */
+	public void setReadImageBtn(JButton readImageBtn) {
+		this.readImageBtn = readImageBtn;
+	}
+	
+	
 }
