@@ -64,6 +64,63 @@ public class DatasetPanel extends JPanel {
 		filepanel_layout.putConstraint(SpringLayout.NORTH, fileNameTxt, 22, SpringLayout.NORTH, this);
 		filepanel_layout.putConstraint(SpringLayout.WEST, fileNameTxt, 76, SpringLayout.WEST, this);
 	}
-	
 
+	/**
+	 * @return the openFileBtn
+	 */
+	public JButton getOpenFileBtn() {
+		return openFileBtn;
+	}
+
+	/**
+	 * @param openFileBtn the openFileBtn to set
+	 */
+	public void setOpenFileBtn(JButton openFileBtn) {
+		this.openFileBtn = openFileBtn;
+	}
+
+	/**
+	 * @return the readFileBtn
+	 */
+	public JButton getReadFileBtn() {
+		return readFileBtn;
+	}
+
+	/**
+	 * @param readFileBtn the readFileBtn to set
+	 */
+	public void setReadFileBtn(JButton readFileBtn) {
+		this.readFileBtn = readFileBtn;
+	}
+
+	/**
+	 * @return the fileNameTxt
+	 */
+	public JTextField getFileNameTxt() {
+		return fileNameTxt;
+	}
+
+	/**
+	 * @param fileNameTxt the fileNameTxt to set
+	 */
+	public void setFileNameTxt(JTextField fileNameTxt) {
+		this.fileNameTxt = fileNameTxt;
+	}
+
+	/**
+	 * @return the fileNameLbl
+	 */
+	public JLabel getFileNameLbl() {
+		return fileNameLbl;
+	}
+
+	/**
+	 * @param fileNameLbl the fileNameLbl to set
+	 */
+	public void setFileNameLbl(JLabel fileNameLbl) {
+		this.fileNameLbl = fileNameLbl;
+	}
+	
+	
+	
 }
