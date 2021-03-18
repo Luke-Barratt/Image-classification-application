@@ -3,18 +3,8 @@
  */
 package cmet.ac.view;
 
-import java.awt.FlowLayout;
-import java.io.File;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
 import javax.swing.BoxLayout;
-import javax.swing.SpringLayout;
-import javax.swing.SwingConstants;
+import javax.swing.JFrame;
 
 /**
  * @author Luke_
@@ -22,17 +12,12 @@ import javax.swing.SwingConstants;
  */
 public class MainView {
 	
-	JLabel			filePathLbl;
-	JTextField 		fileNameTxt;
-	JButton 		selectFileBtn;
-	JButton 		readFileBtn;
+	JFrame 			mainwindow;
 	
-	JLabel			imagePathLbl;
-	JTextField		imageNameTxt;
-	JButton			selectImageBtn;
-	JButton			readImageBtn;
+	DatasetPanel 	datasetpanel;
+	TestImagePanel 	testimagepanel;
+	DisplayPanel 	displaypanel;
 	
-	JFrame			MainView;
 	
 	private static MainView instance;
 	
@@ -43,159 +28,66 @@ public class MainView {
 		return instance;
 	}
 	
-	public MainView() {
+	private MainView() {
 		
-		JFrame jframe = new JFrame("Image Classification");
-		jframe.setSize(589, 495);
-		jframe.setResizable(true);
-		jframe.getContentPane().setLayout(new BorderLayout(0, 0));
-		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jframe.setVisible(true);
+		this.mainwindow = new JFrame("CIFAR-10 Image Classification");
+		this.mainwindow.setSize(600, 600);
+		this.mainwindow.getContentPane().setLayout(new BoxLayout(this.mainwindow.getContentPane(), BoxLayout.Y_AXIS));
 		
-		JPanel panel = new JPanel();
-		jframe.getContentPane().add(panel);
-		SpringLayout sl_panel = new SpringLayout();
-		panel.setLayout(sl_panel);
-		
-		//setup view to select CIFAR-10 data file
-		this.filePathLbl = new JLabel("File path: ");
-		sl_panel.putConstraint(SpringLayout.NORTH, filePathLbl, 22, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, filePathLbl, 10, SpringLayout.WEST, panel);
-		panel.add(filePathLbl);
-		
-		this.fileNameTxt = new JTextField();
-		sl_panel.putConstraint(SpringLayout.NORTH, fileNameTxt, -3, SpringLayout.NORTH, filePathLbl);
-		sl_panel.putConstraint(SpringLayout.WEST, fileNameTxt, 20, SpringLayout.EAST, filePathLbl);
-		sl_panel.putConstraint(SpringLayout.EAST, fileNameTxt, -186, SpringLayout.EAST, panel);
-		panel.add(fileNameTxt);
-		fileNameTxt.setColumns(35);
-		
-		this.selectFileBtn = new JButton("Select file");
-		selectFileBtn.setToolTipText("Select CIFAR-10 dataset");
-		sl_panel.putConstraint(SpringLayout.NORTH, selectFileBtn, -4, SpringLayout.NORTH, filePathLbl);
-		sl_panel.putConstraint(SpringLayout.WEST, selectFileBtn, 15, SpringLayout.EAST, fileNameTxt);
-		panel.add(selectFileBtn);
-		
-		this.readFileBtn = new JButton("Read");
-		sl_panel.putConstraint(SpringLayout.NORTH, readFileBtn, -4, SpringLayout.NORTH, filePathLbl);
-		sl_panel.putConstraint(SpringLayout.EAST, readFileBtn, -16, SpringLayout.EAST, panel);
-		panel.add(readFileBtn);
-		
-		// setup view to select test image
-		this.imagePathLbl = new JLabel("Image path: ");
-		panel.add(imagePathLbl);
-		
-		this.imageNameTxt = new JTextField();
-		sl_panel.putConstraint(SpringLayout.WEST, imageNameTxt, 78, SpringLayout.WEST, panel);
-		sl_panel.putConstraint(SpringLayout.NORTH, imagePathLbl, 3, SpringLayout.NORTH, imageNameTxt);
-		sl_panel.putConstraint(SpringLayout.EAST, imagePathLbl, -6, SpringLayout.WEST, imageNameTxt);
-		panel.add(imageNameTxt);
-		imageNameTxt.setColumns(10);
-		
-		this.selectImageBtn = new JButton("Select image");
-		selectImageBtn.setToolTipText("Select image to classify");
-		sl_panel.putConstraint(SpringLayout.NORTH, imageNameTxt, 1, SpringLayout.NORTH, selectImageBtn);
-		sl_panel.putConstraint(SpringLayout.EAST, imageNameTxt, -15, SpringLayout.WEST, selectImageBtn);
-		sl_panel.putConstraint(SpringLayout.NORTH, selectImageBtn, 20, SpringLayout.SOUTH, selectFileBtn);
-		sl_panel.putConstraint(SpringLayout.WEST, selectImageBtn, 0, SpringLayout.WEST, selectFileBtn);
-		panel.add(selectImageBtn);
-		
-		this.readImageBtn = new JButton("Read");
-		sl_panel.putConstraint(SpringLayout.NORTH, readImageBtn, 0, SpringLayout.NORTH, selectImageBtn);
-		sl_panel.putConstraint(SpringLayout.EAST, readImageBtn, 0, SpringLayout.EAST, readFileBtn);
-		panel.add(readImageBtn);
+		//initialise panels
+		this.datasetpanel = new DatasetPanel(mainwindow);
 		
 		
-	}
-	
-
-	/**
-	 * @return the fileNameTxt
-	 */
-	public JTextField getFileNameTxt() {
-		return fileNameTxt;
-	}
-
-
-	/**
-	 * @param fileNameTxt the fileNameTxt to set
-	 */
-	public void setFileNameTxt(JTextField fileNameTxt) {
-		this.fileNameTxt = fileNameTxt;
-	}
-
-
-	/**
-	 * @return the selectFileBtn
-	 */
-	public JButton getSelectFileBtn() {
-		return selectFileBtn;
-	}
-
-
-	/**
-	 * @param selectFileBtn the selectFileBtn to set
-	 */
-	public void setSelectFileBtn(JButton selectFileBtn) {
-		this.selectFileBtn = selectFileBtn;
-	}
-
-
-	/**
-	 * @return the readFileBtn
-	 */
-	public JButton getReadFileBtn() {
-		return readFileBtn;
-	}
-
-
-	/**
-	 * @param readFileBtn the readFileBtn to set
-	 */
-	public void setReadFileBtn(JButton readFileBtn) {
-		this.readFileBtn = readFileBtn;
+		// add panels
+		this.mainwindow.getContentPane().add(this.datasetpanel);
+		
+		
+		
+		this.mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.mainwindow.setVisible(true);
+		
 	}
 
 	/**
-	 * @return the imageNameTxt
+	 * @return the datasetpanel
 	 */
-	public JTextField getImageNameTxt() {
-		return imageNameTxt;
+	public DatasetPanel getDatasetpanel() {
+		return datasetpanel;
 	}
 
 	/**
-	 * @param imageNameTxt the imageNameTxt to set
+	 * @param datasetpanel the datasetpanel to set
 	 */
-	public void setImageNameTxt(JTextField imageNameTxt) {
-		this.imageNameTxt = imageNameTxt;
+	public void setDatasetpanel(DatasetPanel datasetpanel) {
+		this.datasetpanel = datasetpanel;
 	}
 
 	/**
-	 * @return the selectImageBtn
+	 * @return the testimagepanel
 	 */
-	public JButton getSelectImageBtn() {
-		return selectImageBtn;
+	public TestImagePanel getTestimagepanel() {
+		return testimagepanel;
 	}
 
 	/**
-	 * @param selectImageBtn the selectImageBtn to set
+	 * @param testimagepanel the testimagepanel to set
 	 */
-	public void setSelectImageBtn(JButton selectImageBtn) {
-		this.selectImageBtn = selectImageBtn;
+	public void setTestimagepanel(TestImagePanel testimagepanel) {
+		this.testimagepanel = testimagepanel;
 	}
 
 	/**
-	 * @return the readImageBtn
+	 * @return the displaypanel
 	 */
-	public JButton getReadImageBtn() {
-		return readImageBtn;
+	public DisplayPanel getDisplaypanel() {
+		return displaypanel;
 	}
 
 	/**
-	 * @param readImageBtn the readImageBtn to set
+	 * @param displaypanel the displaypanel to set
 	 */
-	public void setReadImageBtn(JButton readImageBtn) {
-		this.readImageBtn = readImageBtn;
+	public void setDisplaypanel(DisplayPanel displaypanel) {
+		this.displaypanel = displaypanel;
 	}
 	
 	

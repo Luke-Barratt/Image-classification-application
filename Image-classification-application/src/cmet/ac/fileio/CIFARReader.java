@@ -37,18 +37,19 @@ public class CIFARReader implements IFileReader {
 		
 		String image_filename = filename;
 		
-		in_stream_images = new FileInputStream(new File(filename));
+		in_stream_images = new FileInputStream(new File(image_filename));
+		
 		int label = in_stream_images.read();
 		
 		int image_size = 1024;
 		
-		byte[] red_data = new byte[1024];
+		byte[] red_data = new byte[image_size];
 		in_stream_images.read(red_data);
 		
-		byte[] green_data = new byte[1024];
+		byte[] green_data = new byte[image_size];
 		in_stream_images.read(green_data);
 		
-		byte[] blue_data = new byte[1024];
+		byte[] blue_data = new byte[image_size];
 		in_stream_images.read(blue_data);
 		
 		BufferedImage img = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
@@ -67,26 +68,27 @@ public class CIFARReader implements IFileReader {
 		
 		// need to add image and label to array list
 		// ?
-		
+		cifarimage_list.add(new CIFARImage(label, img));
 	
 	}
 
 	@Override
 	public Object getData() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.cifarimage_list;
 	}
 
 	@Override
 	public void setFilename(String filename) {
 		// TODO Auto-generated method stub
+		this.filename = filename;
 		
 	}
 
 	@Override
 	public String getFilename() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.filename;
 	}
 
 }
