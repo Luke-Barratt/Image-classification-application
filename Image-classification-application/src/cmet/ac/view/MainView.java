@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import javax.swing.SpringLayout;
+import javax.swing.SwingConstants;
 
 /**
  * @author Luke_
@@ -45,7 +46,8 @@ public class MainView {
 	public MainView() {
 		
 		JFrame jframe = new JFrame("Image Classification");
-		jframe.setSize(593, 495);
+		jframe.setSize(589, 495);
+		jframe.setResizable(true);
 		jframe.getContentPane().setLayout(new BorderLayout(0, 0));
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jframe.setVisible(true);
@@ -69,6 +71,7 @@ public class MainView {
 		fileNameTxt.setColumns(35);
 		
 		this.selectFileBtn = new JButton("Select file");
+		selectFileBtn.setToolTipText("Select CIFAR-10 dataset");
 		sl_panel.putConstraint(SpringLayout.NORTH, selectFileBtn, -4, SpringLayout.NORTH, filePathLbl);
 		sl_panel.putConstraint(SpringLayout.WEST, selectFileBtn, 15, SpringLayout.EAST, fileNameTxt);
 		panel.add(selectFileBtn);
@@ -90,6 +93,7 @@ public class MainView {
 		imageNameTxt.setColumns(10);
 		
 		this.selectImageBtn = new JButton("Select image");
+		selectImageBtn.setToolTipText("Select image to classify");
 		sl_panel.putConstraint(SpringLayout.NORTH, imageNameTxt, 1, SpringLayout.NORTH, selectImageBtn);
 		sl_panel.putConstraint(SpringLayout.EAST, imageNameTxt, -15, SpringLayout.WEST, selectImageBtn);
 		sl_panel.putConstraint(SpringLayout.NORTH, selectImageBtn, 20, SpringLayout.SOUTH, selectFileBtn);
