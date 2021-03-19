@@ -36,10 +36,12 @@ public class MainView {
 		
 		//initialise panels
 		this.datasetpanel = new DatasetPanel(mainwindow);
+		this.testimagepanel = new TestImagePanel(mainwindow);
 		
 		
 		// add panels
 		this.mainwindow.getContentPane().add(this.datasetpanel);
+		this.mainwindow.getContentPane().add(this.testimagepanel);
 		
 		
 		
