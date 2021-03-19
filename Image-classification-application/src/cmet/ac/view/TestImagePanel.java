@@ -46,7 +46,7 @@ public class TestImagePanel extends JPanel {
 	}
 	
 	private void setupPanel() {
-		this.setSize(600, 70);
+		this.setSize(500, 60);
 		this.setLayout(imagepanel_layout);
 		this.add(imageNameLbl);
 		this.add(imageNameTxt);

@@ -46,7 +46,7 @@ public class DatasetPanel extends JPanel {
 	}
 	
 	private void setupPanel() {
-		this.setSize(600, 70);
+		this.setSize(500, 60);
 		this.setLayout(filepanel_layout);
 		this.add(fileNameLbl);
 		this.add(fileNameTxt);
