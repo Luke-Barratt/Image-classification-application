@@ -47,7 +47,7 @@ public class DatasetPanel extends JPanel {
 	}
 	
 	private void setupPanel() {
-		this.setSize(570, 40);
+		this.setSize(557, 36);
 		this.setLayout(filepanel_layout);
 		this.add(fileNameLbl);
 		this.add(fileNameTxt);
@@ -56,14 +56,14 @@ public class DatasetPanel extends JPanel {
 	}
 	
 	private void setupLayout() {
-		filepanel_layout.putConstraint(SpringLayout.WEST, fileNameTxt, 18, SpringLayout.EAST, fileNameLbl);
+		filepanel_layout.putConstraint(SpringLayout.WEST, fileNameTxt, 17, SpringLayout.EAST, fileNameLbl);
 		filepanel_layout.putConstraint(SpringLayout.NORTH, fileNameLbl, 3, SpringLayout.NORTH, fileNameTxt);
 		filepanel_layout.putConstraint(SpringLayout.WEST, fileNameLbl, 10, SpringLayout.WEST, this);
 		filepanel_layout.putConstraint(SpringLayout.NORTH, readFileBtn, -1, SpringLayout.NORTH, fileNameTxt);
 		filepanel_layout.putConstraint(SpringLayout.WEST, readFileBtn, 6, SpringLayout.EAST, openFileBtn);
 		filepanel_layout.putConstraint(SpringLayout.NORTH, openFileBtn, -1, SpringLayout.NORTH, fileNameTxt);
-		filepanel_layout.putConstraint(SpringLayout.WEST, openFileBtn, 16, SpringLayout.EAST, fileNameTxt);
-		filepanel_layout.putConstraint(SpringLayout.NORTH, fileNameTxt, 10, SpringLayout.NORTH, this);
+		filepanel_layout.putConstraint(SpringLayout.WEST, openFileBtn, 6, SpringLayout.EAST, fileNameTxt);
+		filepanel_layout.putConstraint(SpringLayout.NORTH, fileNameTxt, 7, SpringLayout.NORTH, this);
 	}
 
 	/**

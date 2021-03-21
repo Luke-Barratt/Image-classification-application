@@ -40,6 +40,15 @@ public class TestImagePanel extends JPanel {
 		this.readImageBtn = new JButton("Read");
 		
 		this.imagepanel_layout = new SpringLayout();
+		imagepanel_layout.putConstraint(SpringLayout.NORTH, readImageBtn, -4, SpringLayout.NORTH, imageNameLbl);
+		imagepanel_layout.putConstraint(SpringLayout.WEST, readImageBtn, 6, SpringLayout.EAST, openImageBtn);
+		imagepanel_layout.putConstraint(SpringLayout.NORTH, openImageBtn, -4, SpringLayout.NORTH, imageNameLbl);
+		imagepanel_layout.putConstraint(SpringLayout.WEST, openImageBtn, 6, SpringLayout.EAST, imageNameTxt);
+		imagepanel_layout.putConstraint(SpringLayout.NORTH, imageNameLbl, 6, SpringLayout.NORTH, this);
+		imagepanel_layout.putConstraint(SpringLayout.NORTH, imageNameTxt, -3, SpringLayout.NORTH, imageNameLbl);
+		imagepanel_layout.putConstraint(SpringLayout.WEST, imageNameTxt, 6, SpringLayout.EAST, imageNameLbl);
+		imagepanel_layout.putConstraint(SpringLayout.WEST, imageNameLbl, 10, SpringLayout.WEST, this);
+
 		
 		setupPanel();
 		setupLayout();
@@ -47,7 +56,7 @@ public class TestImagePanel extends JPanel {
 	}
 	
 	private void setupPanel() {
-		this.setSize(574, 41);
+		this.setSize(570, 29);
 		this.setLayout(imagepanel_layout);
 		this.add(imageNameLbl);
 		this.add(imageNameTxt);
@@ -56,14 +65,7 @@ public class TestImagePanel extends JPanel {
 	}
 	
 	private void setupLayout() {
-		imagepanel_layout.putConstraint(SpringLayout.NORTH, readImageBtn, -4, SpringLayout.NORTH, imageNameLbl);
-		imagepanel_layout.putConstraint(SpringLayout.WEST, readImageBtn, 6, SpringLayout.EAST, openImageBtn);
-		imagepanel_layout.putConstraint(SpringLayout.NORTH, openImageBtn, -4, SpringLayout.NORTH, imageNameLbl);
-		imagepanel_layout.putConstraint(SpringLayout.WEST, openImageBtn, 6, SpringLayout.EAST, imageNameTxt);
-		imagepanel_layout.putConstraint(SpringLayout.WEST, imageNameTxt, 78, SpringLayout.WEST, this);
-		imagepanel_layout.putConstraint(SpringLayout.NORTH, imageNameLbl, 3, SpringLayout.NORTH, imageNameTxt);
-		imagepanel_layout.putConstraint(SpringLayout.EAST, imageNameLbl, -6, SpringLayout.WEST, imageNameTxt);
-		imagepanel_layout.putConstraint(SpringLayout.NORTH, imageNameTxt, 10, SpringLayout.NORTH, this);
+
 	}
 
 	/**

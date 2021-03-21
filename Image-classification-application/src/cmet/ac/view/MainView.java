@@ -33,7 +33,7 @@ public class MainView {
 	private MainView() {
 		
 		this.mainwindow = new JFrame("CIFAR-10 Image Classification");
-		this.mainwindow.setSize(765, 300);
+		this.mainwindow.setSize(735, 200);
 		this.mainwindow.setResizable(false);
 		this.mainwindow.getContentPane().setLayout(new BoxLayout(this.mainwindow.getContentPane(), BoxLayout.Y_AXIS));
 		
@@ -41,12 +41,14 @@ public class MainView {
 		this.datasetpanel = new DatasetPanel(mainwindow);
 		this.testimagepanel = new TestImagePanel(mainwindow);
 		this.kvaluepanel = new KValuePanel(mainwindow);
+		this.displaypanel = new DisplayPanel(mainwindow);
 		
 		
 		// add panels
 		this.mainwindow.getContentPane().add(this.datasetpanel);
 		this.mainwindow.getContentPane().add(this.testimagepanel);
 		this.mainwindow.getContentPane().add(this.kvaluepanel);
+		this.mainwindow.getContentPane().add(this.displaypanel);
 		
 		
 		
