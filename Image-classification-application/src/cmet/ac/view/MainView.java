@@ -5,6 +5,7 @@ package cmet.ac.view;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import java.awt.Component;
 
 /**
  * @author Luke_
@@ -12,12 +13,12 @@ import javax.swing.JFrame;
  */
 public class MainView {
 	
-	JFrame 			mainwindow;
+	JFrame 				mainwindow;
 	
-	DatasetPanel 	datasetpanel;
-	TestImagePanel 	testimagepanel;
-	KValuePanel		kvaluepanel;
-	DisplayPanel 	displaypanel;
+	DatasetPanel 		datasetpanel;
+	TestImagePanel 		testimagepanel;
+	KValuePanel			kvaluepanel;
+	DisplayPanel 		displaypanel;
 	
 	
 	private static MainView instance;
@@ -32,7 +33,8 @@ public class MainView {
 	private MainView() {
 		
 		this.mainwindow = new JFrame("CIFAR-10 Image Classification");
-		this.mainwindow.setSize(600, 400);
+		this.mainwindow.setSize(765, 300);
+		this.mainwindow.setResizable(false);
 		this.mainwindow.getContentPane().setLayout(new BoxLayout(this.mainwindow.getContentPane(), BoxLayout.Y_AXIS));
 		
 		//initialise panels

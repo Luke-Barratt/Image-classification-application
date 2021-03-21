@@ -35,6 +35,7 @@ public class DatasetPanel extends JPanel {
 		this.fileNameTxt = new JTextField(40);
 		this.fileNameTxt.setEnabled(false);
 		this.openFileBtn = new JButton("Select file");
+		openFileBtn.setToolTipText("Select CIFAR-10 dataset");
 		this.readFileBtn = new JButton("Read");
 		
 		this.filepanel_layout = new SpringLayout();
@@ -46,7 +47,7 @@ public class DatasetPanel extends JPanel {
 	}
 	
 	private void setupPanel() {
-		this.setSize(500, 60);
+		this.setSize(570, 40);
 		this.setLayout(filepanel_layout);
 		this.add(fileNameLbl);
 		this.add(fileNameTxt);
@@ -55,14 +56,14 @@ public class DatasetPanel extends JPanel {
 	}
 	
 	private void setupLayout() {
-		filepanel_layout.putConstraint(SpringLayout.NORTH, openFileBtn, -4, SpringLayout.NORTH, fileNameLbl);
-		filepanel_layout.putConstraint(SpringLayout.WEST, openFileBtn, 18, SpringLayout.EAST, fileNameTxt);
-		filepanel_layout.putConstraint(SpringLayout.NORTH, readFileBtn, -4, SpringLayout.NORTH, fileNameLbl);
-		filepanel_layout.putConstraint(SpringLayout.EAST, readFileBtn, -25, SpringLayout.EAST, this);
+		filepanel_layout.putConstraint(SpringLayout.WEST, fileNameTxt, 18, SpringLayout.EAST, fileNameLbl);
 		filepanel_layout.putConstraint(SpringLayout.NORTH, fileNameLbl, 3, SpringLayout.NORTH, fileNameTxt);
 		filepanel_layout.putConstraint(SpringLayout.WEST, fileNameLbl, 10, SpringLayout.WEST, this);
-		filepanel_layout.putConstraint(SpringLayout.NORTH, fileNameTxt, 22, SpringLayout.NORTH, this);
-		filepanel_layout.putConstraint(SpringLayout.WEST, fileNameTxt, 76, SpringLayout.WEST, this);
+		filepanel_layout.putConstraint(SpringLayout.NORTH, readFileBtn, -1, SpringLayout.NORTH, fileNameTxt);
+		filepanel_layout.putConstraint(SpringLayout.WEST, readFileBtn, 6, SpringLayout.EAST, openFileBtn);
+		filepanel_layout.putConstraint(SpringLayout.NORTH, openFileBtn, -1, SpringLayout.NORTH, fileNameTxt);
+		filepanel_layout.putConstraint(SpringLayout.WEST, openFileBtn, 16, SpringLayout.EAST, fileNameTxt);
+		filepanel_layout.putConstraint(SpringLayout.NORTH, fileNameTxt, 10, SpringLayout.NORTH, this);
 	}
 
 	/**
