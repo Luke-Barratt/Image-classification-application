@@ -5,6 +5,11 @@ package cmet.ac.view;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import cmet.ac.controller.Controller;
+import cmet.ac.model.Model;
+
 import java.awt.Component;
 
 /**
@@ -19,6 +24,9 @@ public class MainView {
 	TestImagePanel 		testimagepanel;
 	KValuePanel			kvaluepanel;
 	DisplayPanel 		displaypanel;
+	
+	Model				model;
+	Controller			controller;
 	
 	
 	private static MainView instance;
@@ -54,6 +62,10 @@ public class MainView {
 		
 		this.mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.mainwindow.setVisible(true);
+		
+		//initialise the model and controller
+		this.model = new Model();
+		this.controller = new Controller(model, this);
 		
 	}
 
@@ -97,6 +109,10 @@ public class MainView {
 	 */
 	public void setDisplaypanel(DisplayPanel displaypanel) {
 		this.displaypanel = displaypanel;
+	}
+	
+	public void showMessage(String message, String title, int flag) {
+		JOptionPane.showMessageDialog(this.mainwindow, message, "File Read Error", flag);
 	}
 	
 	

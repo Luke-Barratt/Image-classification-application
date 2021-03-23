@@ -3,6 +3,8 @@
  */
 package cmet.ac.view;
 
+import java.io.File;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -64,6 +66,20 @@ public class DatasetPanel extends JPanel {
 		filepanel_layout.putConstraint(SpringLayout.NORTH, openFileBtn, -1, SpringLayout.NORTH, fileNameTxt);
 		filepanel_layout.putConstraint(SpringLayout.WEST, openFileBtn, 6, SpringLayout.EAST, fileNameTxt);
 		filepanel_layout.putConstraint(SpringLayout.NORTH, fileNameTxt, 7, SpringLayout.NORTH, this);
+	}
+	
+	public File showDirectoryChooserDialog() {
+		
+		this.fileChooser = new JFileChooser();
+		this.fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		this.fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		
+		int status = this.fileChooser.showOpenDialog(this.mainWindow);
+		
+		File selected_file = null;
+		if(status == JFileChooser.APPROVE_OPTION)
+			selected_file = this.fileChooser.getSelectedFile();
+		return selected_file;
 	}
 
 	/**

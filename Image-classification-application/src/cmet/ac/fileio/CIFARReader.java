@@ -36,7 +36,7 @@ public class CIFARReader implements IFileReader {
 	public void read() throws IOException {
 		
 		String image_filename = filename;
-		
+
 		in_stream_images = new FileInputStream(new File(image_filename));
 		
 		int label = in_stream_images.read();
@@ -67,7 +67,6 @@ public class CIFARReader implements IFileReader {
 		}
 		
 		// need to add image and label to array list
-		// ?
 		cifarimage_list.add(new CIFARImage(label, img));
 	
 	}
