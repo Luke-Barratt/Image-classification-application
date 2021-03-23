@@ -72,7 +72,7 @@ public class DatasetPanel extends JPanel {
 		
 		this.fileChooser = new JFileChooser();
 		this.fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-		this.fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		// this.fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
 		int status = this.fileChooser.showOpenDialog(this.mainWindow);
 		
