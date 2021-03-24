@@ -103,5 +103,6 @@ public class CIFARReader implements IFileReader {
 		// TODO Auto-generated method stub
 		return this.filename;
 	}
+	
 
 }

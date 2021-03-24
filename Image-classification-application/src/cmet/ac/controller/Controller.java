@@ -40,6 +40,8 @@ public class Controller {
 		this.mainview.getDatasetpanel().getOpenFileBtn().addActionListener((e) -> fileopenAction());
 		this.mainview.getDatasetpanel().getReadFileBtn().addActionListener((e) -> readImageAction());
 		
+		this.mainview.getTestimagepanel().getOpenImageBtn().addActionListener((e) -> imageopenAction());
+		
 		
 	}
 	
@@ -65,5 +67,16 @@ public class Controller {
 		//update the view
 		this.mainview.getDatasetpanel().getFileNameTxt().setText(file_path);
 		
+	}
+	
+	private void imageopenAction() {
+		File selected_image = this.mainview.getTestimagepanel().showDirectoryChooserDialogTestImage();
+		String image_path = selected_image.getPath();
+		
+		//update model
+		this.model.getTestimagereader().setImagename(image_path);
+		
+		//update the view
+		this.mainview.getTestimagepanel().getImageNameTxt().setText(image_path);
 	}
 }

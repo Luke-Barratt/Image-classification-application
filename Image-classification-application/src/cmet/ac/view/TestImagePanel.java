@@ -3,6 +3,8 @@
  */
 package cmet.ac.view;
 
+import java.io.File;
+
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -40,16 +42,7 @@ public class TestImagePanel extends JPanel {
 		this.readImageBtn = new JButton("Read");
 		
 		this.imagepanel_layout = new SpringLayout();
-		imagepanel_layout.putConstraint(SpringLayout.NORTH, readImageBtn, -4, SpringLayout.NORTH, imageNameLbl);
-		imagepanel_layout.putConstraint(SpringLayout.WEST, readImageBtn, 6, SpringLayout.EAST, openImageBtn);
-		imagepanel_layout.putConstraint(SpringLayout.NORTH, openImageBtn, -4, SpringLayout.NORTH, imageNameLbl);
-		imagepanel_layout.putConstraint(SpringLayout.WEST, openImageBtn, 6, SpringLayout.EAST, imageNameTxt);
-		imagepanel_layout.putConstraint(SpringLayout.NORTH, imageNameLbl, 6, SpringLayout.NORTH, this);
-		imagepanel_layout.putConstraint(SpringLayout.NORTH, imageNameTxt, -3, SpringLayout.NORTH, imageNameLbl);
-		imagepanel_layout.putConstraint(SpringLayout.WEST, imageNameTxt, 6, SpringLayout.EAST, imageNameLbl);
-		imagepanel_layout.putConstraint(SpringLayout.WEST, imageNameLbl, 10, SpringLayout.WEST, this);
 
-		
 		setupPanel();
 		setupLayout();
 		
@@ -65,9 +58,31 @@ public class TestImagePanel extends JPanel {
 	}
 	
 	private void setupLayout() {
-
+		imagepanel_layout.putConstraint(SpringLayout.NORTH, readImageBtn, -4, SpringLayout.NORTH, imageNameLbl);
+		imagepanel_layout.putConstraint(SpringLayout.WEST, readImageBtn, 6, SpringLayout.EAST, openImageBtn);
+		imagepanel_layout.putConstraint(SpringLayout.NORTH, openImageBtn, -4, SpringLayout.NORTH, imageNameLbl);
+		imagepanel_layout.putConstraint(SpringLayout.WEST, openImageBtn, 6, SpringLayout.EAST, imageNameTxt);
+		imagepanel_layout.putConstraint(SpringLayout.NORTH, imageNameLbl, 6, SpringLayout.NORTH, this);
+		imagepanel_layout.putConstraint(SpringLayout.NORTH, imageNameTxt, -3, SpringLayout.NORTH, imageNameLbl);
+		imagepanel_layout.putConstraint(SpringLayout.WEST, imageNameTxt, 6, SpringLayout.EAST, imageNameLbl);
+		imagepanel_layout.putConstraint(SpringLayout.WEST, imageNameLbl, 10, SpringLayout.WEST, this);
 	}
-
+	
+	
+	public File showDirectoryChooserDialogTestImage() {
+		this.imageChooser = new JFileChooser();
+		this.imageChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		
+		int status = this.imageChooser.showOpenDialog(this.mainWindow);
+		
+		File selected_image = null;
+		
+		if(status == JFileChooser.APPROVE_OPTION)
+			selected_image = this.imageChooser.getSelectedFile();
+		return selected_image;
+	}
+	
+	
 	/**
 	 * @return the openImageBtn
 	 */
