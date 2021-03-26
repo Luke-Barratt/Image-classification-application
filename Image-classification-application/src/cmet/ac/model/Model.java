@@ -20,6 +20,7 @@ public class Model {
 	IFileReader imagereader;
 	
 	TestImageReader		testImageReader;
+	BufferedImage		testImage;
 	
 	//Need to update class to add test image reader?
 	
@@ -72,5 +73,22 @@ public class Model {
 	public void setTestImageReader(TestImageReader testImageReader) {
 		this.testImageReader = testImageReader;
 	}
+
+
+	/**
+	 * @return the testImage
+	 */
+	public BufferedImage getTestImage() {
+		return testImage;
+	}
+
+
+	/**
+	 * @param testImage the testImage to set
+	 */
+	public void setTestImage(BufferedImage testImage) {
+		this.testImage = testImage;
+	}
+
 	
 }

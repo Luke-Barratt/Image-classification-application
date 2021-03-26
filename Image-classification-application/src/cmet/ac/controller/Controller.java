@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 
@@ -42,6 +43,7 @@ public class Controller {
 		this.mainview.getDatasetpanel().getReadFileBtn().addActionListener((e) -> readImageAction());
 		
 		this.mainview.getTestimagepanel().getOpenImageBtn().addActionListener((e) -> imageOpenAction());
+		this.mainview.getTestimagepanel().getReadImageBtn().addActionListener((e) -> readTestImageAction());
 		
 		
 	}
@@ -71,8 +73,16 @@ public class Controller {
 	
 	
 	private void readTestImageAction() {
+		try {
+			this.model.getTestImageReader().readTestImage();
+		} catch (IOException e) {
+			this.mainview.showMessage("Error in Reading Test Image", "File Read Error", JOptionPane.ERROR_MESSAGE);
+		}
+		this.model.setTestImage((BufferedImage) this.model.getTestImageReader().getTestImage());
 		
-		
+		BufferedImage buffImage = null;
+		buffImage = this.model.getTestImage();
+		this.mainview.getDisplaypanel().getImageLbl().setIcon(new ImageIcon(buffImage));
 	
 	}
 	

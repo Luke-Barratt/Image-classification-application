@@ -33,17 +33,38 @@ public class TestImageReader {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	/**
+	 * @return the testImage
+	 */
+	public BufferedImage getTestImage() {
+		return testImage;
+	}
 
 
+	/**
+	 * @param testImage the testImage to set
+	 */
+	public void setTestImage(BufferedImage testImage) {
+		this.testImage = testImage;
+	}
+
+
+	/**
+	 * @return the imagename
+	 */
+	public String getImagename() {
+		return imagename;
+	}
+
+
+	/**
+	 * @param imagename the imagename to set
+	 */
 	public void setImagename(String imagename) {
-		// TODO Auto-generated method stub
 		this.imagename = imagename;
-		
 	}
 
-	public String getImage() {
-		// TODO Auto-generated method stub
-		return this.imagename;
-	}
 	
 }
