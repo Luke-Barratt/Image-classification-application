@@ -3,6 +3,7 @@
  */
 package cmet.ac.controller;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -40,7 +41,7 @@ public class Controller {
 		this.mainview.getDatasetpanel().getOpenFileBtn().addActionListener((e) -> fileopenAction());
 		this.mainview.getDatasetpanel().getReadFileBtn().addActionListener((e) -> readImageAction());
 		
-		this.mainview.getTestimagepanel().getOpenImageBtn().addActionListener((e) -> imageopenAction());
+		this.mainview.getTestimagepanel().getOpenImageBtn().addActionListener((e) -> imageOpenAction());
 		
 		
 	}
@@ -53,11 +54,11 @@ public class Controller {
 			this.mainview.showMessage("Error in Reading the CIFAR-10 data", "File Read Error", JOptionPane.ERROR_MESSAGE);
 		}
 		this.model.setCifarimage_list((List<CIFARImage>) this.model.getCifarreader().getData());
+
 	}
 	
 	
 	private void fileopenAction() {
-		
 		File selected_file = this.mainview.getDatasetpanel().showDirectoryChooserDialog();
 		String file_path = selected_file.getPath();
 		
@@ -66,17 +67,27 @@ public class Controller {
 		
 		//update the view
 		this.mainview.getDatasetpanel().getFileNameTxt().setText(file_path);
-		
 	}
 	
-	private void imageopenAction() {
+	
+	private void readTestImageAction() {
+		
+		
+	
+	}
+	
+	private void imageOpenAction() {
 		File selected_image = this.mainview.getTestimagepanel().showDirectoryChooserDialogTestImage();
 		String image_path = selected_image.getPath();
 		
 		//update model
-		this.model.getTestimagereader().setImagename(image_path);
+		this.model.getTestImageReader().setImagename(image_path);
 		
-		//update the view
+		//update view
 		this.mainview.getTestimagepanel().getImageNameTxt().setText(image_path);
+		
+		
+
 	}
+	
 }

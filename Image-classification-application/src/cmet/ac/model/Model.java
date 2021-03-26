@@ -3,11 +3,11 @@
  */
 package cmet.ac.model;
 
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 import cmet.ac.fileio.CIFARReader;
 import cmet.ac.fileio.IFileReader;
-import cmet.ac.fileio.IImageReader;
 import cmet.ac.fileio.TestImageReader;
 
 /**
@@ -19,13 +19,13 @@ public class Model {
 	List<CIFARImage> cifarimage_list;
 	IFileReader imagereader;
 	
-	IImageReader testimagereader;
+	TestImageReader		testImageReader;
 	
 	//Need to update class to add test image reader?
 	
 	public Model() {
 		imagereader = new CIFARReader();
-		testimagereader = new TestImageReader();
+		testImageReader = new TestImageReader();
 	}
 	
 
@@ -59,20 +59,18 @@ public class Model {
 
 
 	/**
-	 * @return the testimagereader
+	 * @return the testImageReader
 	 */
-	public IImageReader getTestimagereader() {
-		return testimagereader;
+	public TestImageReader getTestImageReader() {
+		return testImageReader;
 	}
 
 
 	/**
-	 * @param testimagereader the testimagereader to set
+	 * @param testImageReader the testImageReader to set
 	 */
-	public void setTestimagereader(IImageReader testimagereader) {
-		this.testimagereader = testimagereader;
+	public void setTestImageReader(TestImageReader testImageReader) {
+		this.testImageReader = testImageReader;
 	}
-
-	
 	
 }

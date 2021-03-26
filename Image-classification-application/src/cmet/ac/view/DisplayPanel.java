@@ -4,8 +4,10 @@
 package cmet.ac.view;
 
 import java.awt.Dimension;
+import java.awt.image.BufferedImage;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -58,6 +60,6 @@ public class DisplayPanel extends JPanel {
 	public void setImageLbl(JLabel imageLbl) {
 		this.imageLbl = imageLbl;
 	}
-	
-	
+
+
 }
