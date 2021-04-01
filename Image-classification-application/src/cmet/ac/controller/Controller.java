@@ -25,6 +25,7 @@ public class Controller {
 	Model model;
 	MainView mainview;
 	
+	
 	/**
 	 * @param model
 	 * @param mainview
@@ -56,6 +57,13 @@ public class Controller {
 			this.mainview.showMessage("Error in Reading the CIFAR-10 data", "File Read Error", JOptionPane.ERROR_MESSAGE);
 		}
 		this.model.setCifarimage_list((List<CIFARImage>) this.model.getCifarreader().getData());
+		
+		//convert to training data image to gray scale
+		for(int i = 0; i < this.model.getCifarimage_list().size(); i++) {
+			BufferedImage	grayScaleImage;
+			grayScaleImage = this.model.getCifarimage_list().get(i).getBuf_image();
+			this.model.convertToGrayscale(grayScaleImage);
+		}
 
 	}
 	
@@ -73,6 +81,7 @@ public class Controller {
 	
 	
 	private void readTestImageAction() {
+		//read in test image
 		try {
 			this.model.getTestImageReader().readTestImage();
 		} catch (IOException e) {
@@ -80,10 +89,16 @@ public class Controller {
 		}
 		this.model.setTestImage((BufferedImage) this.model.getTestImageReader().getTestImage());
 		
+		//Output test image to display panel
 		BufferedImage buffImage = null;
 		buffImage = this.model.getTestImage();
-		this.mainview.getDisplaypanel().getImageLbl().setIcon(new ImageIcon(buffImage));
-	
+//		this.mainview.getDisplaypanel().getImageLbl().setIcon(new ImageIcon(buffImage));
+		
+		// Converts test image to gray scale and outputs to display panel -  testing functionality
+		BufferedImage greyScaleImage = null; 
+		greyScaleImage = this.model.convertToGrayscale(buffImage);
+		this.mainview.getDisplaypanel().getImageLbl().setIcon(new ImageIcon(greyScaleImage));
+		 
 	}
 	
 	private void imageOpenAction() {
@@ -95,9 +110,7 @@ public class Controller {
 		
 		//update view
 		this.mainview.getTestimagepanel().getImageNameTxt().setText(image_path);
-		
-		
-
 	}
+	
 	
 }
