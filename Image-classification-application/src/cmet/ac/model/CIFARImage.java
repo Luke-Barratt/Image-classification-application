@@ -11,8 +11,8 @@ import java.awt.image.BufferedImage;
  */
 public class CIFARImage {
 	
-	int label;
-	BufferedImage buf_image;
+	int 			label;
+	BufferedImage 	buf_image;
 	
 	/**
 	 * @param label
@@ -23,6 +23,7 @@ public class CIFARImage {
 		this.label = label;
 		this.buf_image = buf_image;
 	}
+	
 
 	/**
 	 * @return the label
@@ -51,8 +52,6 @@ public class CIFARImage {
 	public void setBuf_image(BufferedImage buf_image) {
 		this.buf_image = buf_image;
 	}
-	
-	
-	
+
 
 }

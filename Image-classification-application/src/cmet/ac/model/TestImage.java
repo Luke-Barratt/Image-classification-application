@@ -34,6 +34,5 @@ public class TestImage {
 	public void setTestimage(BufferedImage testimage) {
 		this.testimage = testimage;
 	}
-	
 
 }
