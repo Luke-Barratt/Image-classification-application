@@ -17,6 +17,7 @@ import javax.swing.SpringLayout;
 public class KValuePanel extends JPanel {
 	
 	JButton			selectValueBtn;
+	JButton			startBtn;
 	JTextField		kValueTxt;
 	JLabel			kValueLbl;
 	
@@ -31,30 +32,35 @@ public class KValuePanel extends JPanel {
 		this.kValueLbl = new JLabel("K Value: ");
 		this.kValueTxt = new JTextField(5);
 		kValueTxt.setToolTipText("Enter a value between 1-10");
-		this.selectValueBtn = new JButton("Start");
-		selectValueBtn.setToolTipText("Start image classification process");
+		this.selectValueBtn = new JButton("Select");
+		selectValueBtn.setToolTipText("Select a k value");
+		this.startBtn = new JButton("Start");
+		startBtn.setToolTipText("Start classification process");
 		
 		this.kvaluepanel_layout = new SpringLayout();
+
+		setupPanel();
+		setupLayout();
+	}
+	
+	private void setupPanel() {
+		this.setSize(241, 32);
+		this.setLayout(kvaluepanel_layout);
+		this.add(kValueLbl);
+		this.add(kValueTxt);
+		this.add(selectValueBtn);
+		this.add(startBtn);
+	}
+	
+	private void setupLayout() {
+		kvaluepanel_layout.putConstraint(SpringLayout.NORTH, startBtn, -4, SpringLayout.NORTH, kValueLbl);
+		kvaluepanel_layout.putConstraint(SpringLayout.WEST, startBtn, 6, SpringLayout.EAST, selectValueBtn);
 		kvaluepanel_layout.putConstraint(SpringLayout.NORTH, selectValueBtn, -4, SpringLayout.NORTH, kValueLbl);
 		kvaluepanel_layout.putConstraint(SpringLayout.WEST, selectValueBtn, 6, SpringLayout.EAST, kValueTxt);
 		kvaluepanel_layout.putConstraint(SpringLayout.NORTH, kValueLbl, 9, SpringLayout.NORTH, this);
 		kvaluepanel_layout.putConstraint(SpringLayout.NORTH, kValueTxt, -3, SpringLayout.NORTH, kValueLbl);
 		kvaluepanel_layout.putConstraint(SpringLayout.WEST, kValueTxt, 6, SpringLayout.EAST, kValueLbl);
 		kvaluepanel_layout.putConstraint(SpringLayout.WEST, kValueLbl, 10, SpringLayout.WEST, this);
-		
-		setupPanel();
-		setupLayout();
-	}
-	
-	private void setupPanel() {
-		this.setSize(176, 33);
-		this.setLayout(kvaluepanel_layout);
-		this.add(kValueLbl);
-		this.add(kValueTxt);
-		this.add(selectValueBtn);
-	}
-	
-	private void setupLayout() {
 	}
 
 	/**

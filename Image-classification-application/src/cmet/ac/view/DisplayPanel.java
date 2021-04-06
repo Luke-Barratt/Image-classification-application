@@ -21,6 +21,8 @@ import javax.swing.border.EtchedBorder;
 public class DisplayPanel extends JPanel {
 	
 	JLabel						imageLbl;
+	JLabel						classificationLbl;
+	JLabel						confidenceLbl;
 	
 	private JFrame				mainWindow;
 	private SpringLayout		displaypanel_layout;
@@ -30,6 +32,8 @@ public class DisplayPanel extends JPanel {
 		this.mainWindow = mainWindow;
 		this.displaypanel_layout = new SpringLayout();
 		this.imageLbl = new JLabel();
+		this.classificationLbl = new JLabel();
+		this.confidenceLbl = new JLabel();
 
 		setupPanel();
 		setupLayout();
@@ -40,6 +44,8 @@ public class DisplayPanel extends JPanel {
 		setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		
 		add(imageLbl);
+		add(classificationLbl);
+		add(confidenceLbl);
 		
 	}
 
@@ -61,5 +67,33 @@ public class DisplayPanel extends JPanel {
 		this.imageLbl = imageLbl;
 	}
 
+	/**
+	 * @return the classificationLbl
+	 */
+	public JLabel getClassificationLbl() {
+		return classificationLbl;
+	}
 
+	/**
+	 * @param classificationLbl the classificationLbl to set
+	 */
+	public void setClassificationLbl(JLabel classificationLbl) {
+		this.classificationLbl = classificationLbl;
+	}
+
+	/**
+	 * @return the confidenceLbl
+	 */
+	public JLabel getConfidenceLbl() {
+		return confidenceLbl;
+	}
+
+	/**
+	 * @param confidenceLbl the confidenceLbl to set
+	 */
+	public void setConfidenceLbl(JLabel confidenceLbl) {
+		this.confidenceLbl = confidenceLbl;
+	}
+
+	
 }

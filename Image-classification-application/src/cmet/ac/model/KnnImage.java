@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.swing.JTextField;
+
 
 /**
  * @author Luke_
@@ -18,7 +20,7 @@ public class KnnImage {
 	
 	int 				k;
 	List<CIFARImage> 	data;
-	TestImage			testImage;
+	BufferedImage		testImage;
 	
 	List<TrainImage>	distance_lbl_array;
 
@@ -31,7 +33,7 @@ public class KnnImage {
 	 * @param data
 	 * @param testImage
 	 */
-	public KnnImage(int k, List<CIFARImage> data, TestImage testImage) {
+	public KnnImage(int k, List<CIFARImage> data, BufferedImage testImage) {
 		super();
 		this.k = k;
 		this.data = data;
@@ -42,7 +44,7 @@ public class KnnImage {
 		
 		for(int i = 0;  i < data.size(); i++) {
 			
-			BufferedImage testImage = this.testImage.getTestimage();
+			BufferedImage testImage = this.testImage;
 			
 			BufferedImage trainImage = this.data.get(i).getBuf_image();
 			int trainImageLbl = this.data.get(i).getLabel();
@@ -160,14 +162,14 @@ public class KnnImage {
 	/**
 	 * @return the testImage
 	 */
-	public TestImage getTestImage() {
+	public BufferedImage getTestImage() {
 		return testImage;
 	}
 
 	/**
 	 * @param testImage the testImage to set
 	 */
-	public void setTestImage(TestImage testImage) {
+	public void setTestImage(BufferedImage testImage) {
 		this.testImage = testImage;
 	}
 
@@ -198,11 +200,6 @@ public class KnnImage {
 	public void setConfidence(double confidence) {
 		this.confidence = confidence;
 	}
-	
-	
-	
-	
-	
-	
+
 	
 }

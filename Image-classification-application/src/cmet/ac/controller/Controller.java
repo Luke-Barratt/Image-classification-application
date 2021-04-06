@@ -9,11 +9,14 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
+import javax.swing.JTextField;
 
 import cmet.ac.model.CIFARImage;
+import cmet.ac.model.KnnImage;
 import cmet.ac.model.Model;
+import cmet.ac.model.TestImage;
 import cmet.ac.view.MainView;
 
 /**
@@ -45,6 +48,9 @@ public class Controller {
 		
 		this.mainview.getTestimagepanel().getOpenImageBtn().addActionListener((e) -> imageOpenAction());
 		this.mainview.getTestimagepanel().getReadImageBtn().addActionListener((e) -> readTestImageAction());
+		
+		this.mainview.getKvaluepanel().getSelectValueBtn().addActionListener((e) -> selectKValue());
+		
 		
 		
 	}
@@ -89,15 +95,16 @@ public class Controller {
 		}
 		this.model.setTestImage((BufferedImage) this.model.getTestImageReader().getTestImage());
 		
-		//Output test image to display panel
 		BufferedImage buffImage = null;
 		buffImage = this.model.getTestImage();
-//		this.mainview.getDisplaypanel().getImageLbl().setIcon(new ImageIcon(buffImage));
+
 		
-		// Converts test image to gray scale and outputs to display panel -  testing functionality
+		// Converts test image to gray scale
 		BufferedImage greyScaleImage = null; 
 		greyScaleImage = this.model.convertToGrayscale(buffImage);
-		this.mainview.getDisplaypanel().getImageLbl().setIcon(new ImageIcon(greyScaleImage));
+		
+		// Output test image to display panel
+		this.mainview.getDisplaypanel().getImageLbl().setIcon(new ImageIcon(buffImage));
 		 
 	}
 	
@@ -112,5 +119,41 @@ public class Controller {
 		this.mainview.getTestimagepanel().getImageNameTxt().setText(image_path);
 	}
 	
+	private void imageClassificationAction() throws Exception {
+		
+		int kvalue = this.model.getKnnImage().getK();
+		this.model.getKnnImage().setData(this.model.getCifarimage_list());
+		
+		this.model.getKnnImage().setTestImage(this.model.getTestImage());
+		
+//		KnnImage knnImage = new KnnImage(kvalue, this.model.getCifarimage_list(), this.model.getTestImage());
+//		knnImage.calculateDistance();
+//		knnImage.classify();
+		
+		this.model.getKnnImage().calculateDistance();
+		this.model.getKnnImage().classify();
+		
+		
+		// set classification label
+		String result_string = this.model.getKnnImage().getResult();
+		this.mainview.getDisplaypanel().setClassificationLbl(new JLabel(result_string));
+		
+		// set confidence label
+		double confidence_double = this.model.getKnnImage().getConfidence();
+		String confidence = Double.toString(confidence_double);
+		
+		this.mainview.getDisplaypanel().setConfidenceLbl(new JLabel(confidence));
+	}
+	
+	private void selectKValue() {
+		
+		// Convert the input for the JTextField to an integer value
+		JTextField input = this.mainview.getKvaluepanel().getkValueTxt();
+		String text = input.getText();
+		int kvalue = Integer.parseInt(text);
+		
+		// set the k value in the KnnImage class
+		this.model.getKnnImage().setK(kvalue);
+	}
 	
 }

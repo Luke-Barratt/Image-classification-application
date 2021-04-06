@@ -111,6 +111,21 @@ public class MainView {
 		this.displaypanel = displaypanel;
 	}
 	
+	
+	/**
+	 * @return the kvaluepanel
+	 */
+	public KValuePanel getKvaluepanel() {
+		return kvaluepanel;
+	}
+
+	/**
+	 * @param kvaluepanel the kvaluepanel to set
+	 */
+	public void setKvaluepanel(KValuePanel kvaluepanel) {
+		this.kvaluepanel = kvaluepanel;
+	}
+
 	public void showMessage(String message, String title, int flag) {
 		JOptionPane.showMessageDialog(this.mainwindow, message, "File Read Error", flag);
 	}

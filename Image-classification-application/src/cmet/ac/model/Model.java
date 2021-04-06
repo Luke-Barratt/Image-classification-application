@@ -18,6 +18,7 @@ public class Model {
 	
 	List<CIFARImage> 	cifarimage_list;
 	IFileReader 		imagereader;
+	KnnImage			knnImage;
 	
 	TestImageReader		testImageReader;
 	
@@ -124,5 +125,20 @@ public class Model {
 		this.testImage = testImage;
 	}
 
+	/**
+	 * @return the knnImage
+	 */
+	public KnnImage getKnnImage() {
+		return knnImage;
+	}
+
+	/**
+	 * @param knnImage the knnImage to set
+	 */
+	public void setKnnImage(KnnImage knnImage) {
+		this.knnImage = knnImage;
+	}
+	
+	
 	
 }
