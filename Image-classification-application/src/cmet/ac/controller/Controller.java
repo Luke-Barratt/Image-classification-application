@@ -137,13 +137,18 @@ public class Controller {
 		
 		// set classification label
 		String result_string = this.model.getKnnImage().getResult();
-		this.mainview.getDisplaypanel().setClassificationLbl(new JLabel(result_string));
+		
+		JLabel resultLbl = this.mainview.getDisplaypanel().getClassificationLbl();
+		resultLbl.setText(result_string);
+		this.mainview.getDisplaypanel().setClassificationLbl(resultLbl);
 		
 		// set confidence label
 		double confidence_double = this.model.getKnnImage().getConfidence();
 		String confidence = Double.toString(confidence_double);
 		
-		this.mainview.getDisplaypanel().setConfidenceLbl(new JLabel(confidence));
+		JLabel confidenceLbl = this.mainview.getDisplaypanel().getConfidenceLbl();
+		confidenceLbl.setText(confidence);
+		this.mainview.getDisplaypanel().setConfidenceLbl(confidenceLbl);
 	}
 	
 	private void selectKValue() {
