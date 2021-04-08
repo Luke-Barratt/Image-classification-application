@@ -141,11 +141,13 @@ public class KnnImage {
 		this.result = Integer.toString(element);
 		System.out.println("Classification: " + result);
 		
+		double klistSize = Double.valueOf(klist.size());
+		double countToDouble = Double.valueOf(count);
+		
 		// divides the count for the most common label from k closest neighbours by the number of k closest neighbours
-		this.confidence = (count/klist.size()) * 100;
+		this.confidence = 100 * (countToDouble/klistSize);
 		System.out.println("Confidence: " + confidence);
 		
-		System.out.println("");
 	}
 
 
