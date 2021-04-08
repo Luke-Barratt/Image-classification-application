@@ -81,8 +81,7 @@ public class CIFARReader implements IFileReader {
 			
 			System.out.println("Reading image: " + i + " with label: " + label);
 			
-		}
-		System.out.println(cifarimage_list.size());			
+		}		
 	}
 
 	@Override

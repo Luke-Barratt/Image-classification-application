@@ -153,9 +153,6 @@ public class Controller {
 		String text = input.getText();
 		int kvalue = Integer.parseInt(text);
 		
-		// Print k value
-		System.out.println("K value selected: " + text);
-		
 		// set the k value in the KnnImage class
 		this.model.getKnnImage().setK(kvalue);
 	}

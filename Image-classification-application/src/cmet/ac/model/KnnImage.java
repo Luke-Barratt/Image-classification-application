@@ -93,11 +93,12 @@ public class KnnImage {
 		
 		// print out sorted array of distances
 		this.distance_lbl_array.forEach(item -> System.out.println("Label: " + item.getLbl() + " Distance: " + item.getDistance()));
-		System.out.println("\n");
 		
 		// Get the closest k neighbours to the test image
 		this.klist = this.distance_lbl_array.subList(0, this.k);
 		
+		System.out.println("K value selected: " + this.k);
+		System.out.println("K closest neighbours: ");
 		// print out 0 - k nearest neighbours list
 		this.klist.forEach(item -> System.out.println("Label: " + item.getLbl() + " Distance: " + item.getDistance()));
 		
@@ -105,7 +106,6 @@ public class KnnImage {
 		for(int i = 0; i < klist.size(); i++) {
 			int lbl = klist.get(i).getLbl();
 			lblList.add(lbl);
-			System.out.print(lblList.get(i) + "\n");
 		}
 		
 		// Find the most common label in k closest neighbours 
@@ -132,39 +132,38 @@ public class KnnImage {
 		
 		// store the most common label from k closest neighbours
 		this.result = Integer.toString(element);
-		System.out.println("Classification: " + result);
 		
 		// Switch to select classification
 		switch(element) {
 		case 0:
-			System.out.println("airplane");
+			System.out.println("Classificaton: " + result + " (airplane)");
 		break;
 		case 1:
-			System.out.println("automobile");
+			System.out.println("Classificaton: " + result + " (automobile)");
 		break;
 		case 2:
-			System.out.println("bird");
+			System.out.println("Classificaton: " + result + " (bird)");
 		break;
 		case 3:
-			System.out.println("cat");
+			System.out.println("Classificaton: " + result + " (cat)");
 		break;
 		case 4:
-			System.out.println("deer");
+			System.out.println("Classificaton: " + result + " (deer)");
 		break;
 		case 5:
-			System.out.println("dog");
+			System.out.println("Classificaton: " + result + " (dog)");
 		break;
 		case 6:
-			System.out.println("frog");
+			System.out.println("Classificaton: " + result + " (frog)");
 		break;
 		case 7:
-			System.out.println("horse");
+			System.out.println("Classificaton: " + result + " (horse)");
 		break;
 		case 8:
-			System.out.println("ship");
+			System.out.println("Classificaton: " + result + " (ship)");
 		break;
 		case 9:
-			System.out.println("truck");
+			System.out.println("Classificaton: " + result + " (truck)");
 		break;
 		}
 		
@@ -173,7 +172,7 @@ public class KnnImage {
 		
 		// divides the count for the most common label from k closest neighbours by the number of k closest neighbours
 		this.confidence = 100 * (countToDouble/klistSize);
-		System.out.println("Confidence: " + confidence + "%");
+		System.out.println("Confidence Level: " + confidence + "%");
 		
 	}
 
