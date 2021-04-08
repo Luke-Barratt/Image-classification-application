@@ -104,6 +104,22 @@ public class KValuePanel extends JPanel {
 	public void setkValueLbl(JLabel kValueLbl) {
 		this.kValueLbl = kValueLbl;
 	}
+
+	/**
+	 * @return the startBtn
+	 */
+	public JButton getStartBtn() {
+		return startBtn;
+	}
+
+	/**
+	 * @param startBtn the startBtn to set
+	 */
+	public void setStartBtn(JButton startBtn) {
+		this.startBtn = startBtn;
+	}
+	
+	
 	
 	
 

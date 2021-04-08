@@ -50,8 +50,7 @@ public class Controller {
 		this.mainview.getTestimagepanel().getReadImageBtn().addActionListener((e) -> readTestImageAction());
 		
 		this.mainview.getKvaluepanel().getSelectValueBtn().addActionListener((e) -> selectKValue());
-		
-		
+		this.mainview.getKvaluepanel().getStartBtn().addActionListener((e) -> imageClassificationAction());
 		
 	}
 	
@@ -64,13 +63,16 @@ public class Controller {
 		}
 		this.model.setCifarimage_list((List<CIFARImage>) this.model.getCifarreader().getData());
 		
-		//convert to training data image to gray scale
-		for(int i = 0; i < this.model.getCifarimage_list().size(); i++) {
-			BufferedImage	grayScaleImage;
-			grayScaleImage = this.model.getCifarimage_list().get(i).getBuf_image();
-			this.model.convertToGrayscale(grayScaleImage);
-		}
-
+//		BufferedImage test = this.model.getCifarimage_list().get(0).getBuf_image();
+//		this.mainview.getDisplaypanel().getImageLbl().setIcon(new ImageIcon(test));
+		
+		//convert to training data images to gray scale		
+		this.model.getCifarimage_list().forEach(item -> {
+			BufferedImage greyScaleImage = null;
+			greyScaleImage = this.model.convertToGrayscale(item.getBuf_image());
+			item.setBuf_image(greyScaleImage);
+		});
+		
 	}
 	
 	
@@ -98,10 +100,10 @@ public class Controller {
 		BufferedImage buffImage = null;
 		buffImage = this.model.getTestImage();
 
-		
 		// Converts test image to gray scale
 		BufferedImage greyScaleImage = null; 
 		greyScaleImage = this.model.convertToGrayscale(buffImage);
+		this.model.setTestImage(greyScaleImage);
 		
 		// Output test image to display panel
 		this.mainview.getDisplaypanel().getImageLbl().setIcon(new ImageIcon(buffImage));
@@ -119,20 +121,19 @@ public class Controller {
 		this.mainview.getTestimagepanel().getImageNameTxt().setText(image_path);
 	}
 	
-	private void imageClassificationAction() throws Exception {
+	private void imageClassificationAction() {
 		
-		int kvalue = this.model.getKnnImage().getK();
+		// Not setting the knnImage list properly ???
 		this.model.getKnnImage().setData(this.model.getCifarimage_list());
 		
 		this.model.getKnnImage().setTestImage(this.model.getTestImage());
 		
-//		KnnImage knnImage = new KnnImage(kvalue, this.model.getCifarimage_list(), this.model.getTestImage());
-//		knnImage.calculateDistance();
-//		knnImage.classify();
-		
-		this.model.getKnnImage().calculateDistance();
-		this.model.getKnnImage().classify();
-		
+		try {
+			this.model.getKnnImage().imageClassification();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// set classification label
 		String result_string = this.model.getKnnImage().getResult();
@@ -151,6 +152,9 @@ public class Controller {
 		JTextField input = this.mainview.getKvaluepanel().getkValueTxt();
 		String text = input.getText();
 		int kvalue = Integer.parseInt(text);
+		
+		// Print k value
+		System.out.println("K value selected: " + text);
 		
 		// set the k value in the KnnImage class
 		this.model.getKnnImage().setK(kvalue);

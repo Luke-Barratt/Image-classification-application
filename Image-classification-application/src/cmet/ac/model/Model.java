@@ -28,6 +28,8 @@ public class Model {
 	public Model() {
 		imagereader = new CIFARReader();
 		testImageReader = new TestImageReader();
+		knnImage = new KnnImage(0, cifarimage_list, testImage);
+		//knnImage = new KnnImage();
 	}
 	
 	public BufferedImage convertToGrayscale(BufferedImage img) {

@@ -65,7 +65,7 @@ public class CIFARReader implements IFileReader {
 			
 			BufferedImage img = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
 			
-			for(int row = 0; row > 32; row++) {
+			for(int row = 0; row < 32; row++) {
 				for(int col = 0; col < 32; col++) {
 					
 					Color color = new Color(

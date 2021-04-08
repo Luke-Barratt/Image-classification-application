@@ -9,8 +9,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.swing.JTextField;
-
 
 /**
  * @author Luke_
@@ -23,6 +21,8 @@ public class KnnImage {
 	BufferedImage		testImage;
 	
 	List<TrainImage>	distance_lbl_array;
+	List<TrainImage>	klist;
+	List<Integer>		lblList;
 
 	String 				result;
 	double				confidence;
@@ -38,42 +38,49 @@ public class KnnImage {
 		this.k = k;
 		this.data = data;
 		this.testImage = testImage;
+		
+		this.distance_lbl_array = new ArrayList<TrainImage>();
+		this.klist = new ArrayList<TrainImage>();
+		this.lblList = new ArrayList<Integer>();
 	}
 	
-	public void calculateDistance() throws Exception {
+	
+	public KnnImage() {
 		
-		for(int i = 0;  i < data.size(); i++) {
+	}
+
+	public void imageClassification() throws Exception {
+		
+		this.data.forEach(item -> {
 			
 			BufferedImage testImage = this.testImage;
+			BufferedImage trainImage = item.getBuf_image();
+			int trainImageLbl = item.getLabel();
 			
-			BufferedImage trainImage = this.data.get(i).getBuf_image();
-			int trainImageLbl = this.data.get(i).getLabel();
-			
-			if((testImage.getWidth() != trainImage.getWidth()) || (testImage.getHeight() != trainImage.getHeight())) {
-				throw new Exception("The two images have different dimensions");
+			if((testImage.getWidth() != trainImage.getWidth() || (testImage.getHeight() != trainImage.getHeight()))) {
+				throw new Error("The two images have different dimensions");
 			}
-			
+
 			double pixel_error_sum = 0;
 			
 			for(int row = 0; row < testImage.getHeight(); row++) {
 				for(int col = 0; col < testImage.getWidth(); col++) {
 					
-					int testImagePixel = testImage.getRGB(col, row);
-					int trainImagePixel = trainImage.getRGB(col, row);
+					int testImagePixel = testImage.getRGB(col, row) & 0xFF;
+					int trainImagePixel = trainImage.getRGB(col, row) & 0xFF;
 					
 					pixel_error_sum += ((testImagePixel - trainImagePixel) * (testImagePixel - trainImagePixel));
-
 				}
 			}
+			
 			double distance = Math.sqrt(pixel_error_sum);
 			
-			TrainImage distance_lbl_image = new TrainImage(distance, trainImageLbl);
+			distance_lbl_array.add(new TrainImage(distance, trainImageLbl));
 			
-			distance_lbl_array.add(distance_lbl_image);
-		}
-	}
-
-	public void classify() {
+		});
+		
+		// print array of distances
+		//this.distance_lbl_array.forEach(item -> System.out.println("Label: " + item.getLbl() + " Distance: " + item.getDistance()));
 		
 		// Sorting array by distance
 		Collections.sort(this.distance_lbl_array, new Comparator<TrainImage>() {
@@ -87,19 +94,26 @@ public class KnnImage {
 		});
 		
 		// print out sorted array of distances
-		this.distance_lbl_array.forEach(item -> System.out.println(item + " distance; " + item.getDistance()));
+		this.distance_lbl_array.forEach(item -> System.out.println("Label: " + item.getLbl() + " Distance: " + item.getDistance()));
+		System.out.println("\n");
 		
 		// Get the closest k neighbours to the test image
-		List<TrainImage> klist = this.distance_lbl_array.subList(0, this.k);
+		this.klist = this.distance_lbl_array.subList(0, this.k);
+		
+		// print out 0 - k nearest neighbours list
+		this.klist.forEach(item -> System.out.println("Label: " + item.getLbl() + " Distance: " + item.getDistance()));
 		
 		// Array List to hold labels
-		ArrayList<Integer> lblList = new ArrayList<Integer>();
-		
+		//this.lblList = new ArrayList<Integer>();
+
 		// Get the label of each k closest neighbours and add to array of labels
 		for(int i = 0; i < klist.size(); i++) {
 			int lbl = klist.get(i).getLbl();
 			lblList.add(lbl);
+			System.out.print(lblList.get(i) + "\n");
 		}
+		
+		
 		
 		// Find the most common label in k closest neighbours 
 		int count = 0;
@@ -124,12 +138,16 @@ public class KnnImage {
 		}
 		
 		// store the most common label from k closest neighbours
-		result = Integer.toString(element);
+		this.result = Integer.toString(element);
+		System.out.println("Classification: " + result);
 		
 		// divides the count for the most common label from k closest neighbours by the number of k closest neighbours
-		confidence = (count/klist.size()) * 100;
+		this.confidence = (count/klist.size()) * 100;
+		System.out.println("Confidence: " + confidence);
 		
+		System.out.println("");
 	}
+
 
 	/**
 	 * @return the k
@@ -200,6 +218,6 @@ public class KnnImage {
 	public void setConfidence(double confidence) {
 		this.confidence = confidence;
 	}
-
+	
 	
 }
