@@ -139,7 +139,7 @@ public class Controller {
 		String result_string = this.model.getKnnImage().getResult();
 		
 		JLabel resultLbl = this.mainview.getDisplaypanel().getClassificationLbl();
-		resultLbl.setText(result_string);
+		resultLbl.setText("Classification: " + result_string);
 		this.mainview.getDisplaypanel().setClassificationLbl(resultLbl);
 		
 		// set confidence label
@@ -147,7 +147,7 @@ public class Controller {
 		String confidence = Double.toString(confidence_double);
 		
 		JLabel confidenceLbl = this.mainview.getDisplaypanel().getConfidenceLbl();
-		confidenceLbl.setText(confidence);
+		confidenceLbl.setText("Confidence level: " + confidence + "%");
 		this.mainview.getDisplaypanel().setConfidenceLbl(confidenceLbl);
 	}
 	
