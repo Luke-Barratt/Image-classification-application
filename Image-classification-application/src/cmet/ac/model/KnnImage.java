@@ -72,7 +72,6 @@ public class KnnImage {
 					pixel_error_sum += ((testImagePixel - trainImagePixel) * (testImagePixel - trainImagePixel));
 				}
 			}
-			
 			double distance = Math.sqrt(pixel_error_sum);
 			
 			distance_lbl_array.add(new TrainImage(distance, trainImageLbl));
@@ -87,7 +86,6 @@ public class KnnImage {
 
 			@Override
 			public int compare(TrainImage o1, TrainImage o2) {
-				// TODO Auto-generated method stub
 				return Double.compare(o1.getDistance(), o2.getDistance());
 			}
 			
@@ -103,17 +101,12 @@ public class KnnImage {
 		// print out 0 - k nearest neighbours list
 		this.klist.forEach(item -> System.out.println("Label: " + item.getLbl() + " Distance: " + item.getDistance()));
 		
-		// Array List to hold labels
-		//this.lblList = new ArrayList<Integer>();
-
 		// Get the label of each k closest neighbours and add to array of labels
 		for(int i = 0; i < klist.size(); i++) {
 			int lbl = klist.get(i).getLbl();
 			lblList.add(lbl);
 			System.out.print(lblList.get(i) + "\n");
 		}
-		
-		
 		
 		// Find the most common label in k closest neighbours 
 		int count = 0;
@@ -141,15 +134,48 @@ public class KnnImage {
 		this.result = Integer.toString(element);
 		System.out.println("Classification: " + result);
 		
+		// Switch to select classification
+		switch(element) {
+		case 0:
+			System.out.println("airplane");
+		break;
+		case 1:
+			System.out.println("automobile");
+		break;
+		case 2:
+			System.out.println("bird");
+		break;
+		case 3:
+			System.out.println("cat");
+		break;
+		case 4:
+			System.out.println("deer");
+		break;
+		case 5:
+			System.out.println("dog");
+		break;
+		case 6:
+			System.out.println("frog");
+		break;
+		case 7:
+			System.out.println("horse");
+		break;
+		case 8:
+			System.out.println("ship");
+		break;
+		case 9:
+			System.out.println("truck");
+		break;
+		}
+		
 		double klistSize = Double.valueOf(klist.size());
 		double countToDouble = Double.valueOf(count);
 		
 		// divides the count for the most common label from k closest neighbours by the number of k closest neighbours
 		this.confidence = 100 * (countToDouble/klistSize);
-		System.out.println("Confidence: " + confidence);
+		System.out.println("Confidence: " + confidence + "%");
 		
 	}
-
 
 	/**
 	 * @return the k
